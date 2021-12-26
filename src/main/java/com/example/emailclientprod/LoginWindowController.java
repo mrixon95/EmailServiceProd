@@ -45,7 +45,10 @@ public class LoginWindowController extends BaseController implements Initializab
                 switch (emailLoginResult) {
                     case SUCCESS -> {
                         System.out.println("Login success!!!" + emailAccount);
-                        viewFactory.showMainWindow();
+                        if (!viewFactory.isMainViewInitialised()) {
+                            viewFactory.showMainWindow();
+                        }
+
                         Stage stage = (Stage) errorLabel.getScene().getWindow();
                         viewFactory.closeStage(stage);
                     } case FAILED_BY_UNEXPECTED_ERROR -> {
@@ -78,7 +81,7 @@ public class LoginWindowController extends BaseController implements Initializab
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        emailAddressField.setText("mrixon95@gmail.com");
+        emailAddressField.setText("michaelrixon95@gmail.com");
         passwordField.setText("Stephen22968402###");
     }
 }

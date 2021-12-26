@@ -14,6 +14,12 @@ public class ViewFactory {
 
     private EmailManager emailManager;
     private ArrayList<Stage> activeStages;
+    private boolean mainViewInitialised = false;
+
+    public boolean isMainViewInitialised() {
+        return mainViewInitialised;
+    }
+
 
     public ViewFactory(EmailManager emailManager) {
 
@@ -52,6 +58,7 @@ public class ViewFactory {
         System.out.println("Main window called");
         BaseController controller = new MainWindowController(emailManager, this, "mainwindow.fxml");
         initializeStage(controller);
+        mainViewInitialised = true;
 
     }
 
