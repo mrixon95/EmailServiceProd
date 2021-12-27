@@ -30,9 +30,13 @@ public class EmailTreeItem<String> extends TreeItem<String> {
         }
     }
 
-    public ObservableList<EmailMessage> getEmailMessages() {
-        return emailMessages;
+    public void decrementMessagesCount(){
+        unreadMessagesCount--;
+        updateName();
     }
+
+
+
 
     public void addEmail(Message message) throws MessagingException {
         boolean messageIsRead = message.getFlags().contains(Flags.Flag.SEEN);
@@ -56,5 +60,32 @@ public class EmailTreeItem<String> extends TreeItem<String> {
         unreadMessagesCount++;
         updateName();
     }
+
+    public ObservableList<EmailMessage> getEmailMessages() {
+        return  emailMessages;
+    }
+
+    public void addEmailToTop(Message message) throws MessagingException {
+        EmailMessage emailMessage = fetchMessage(message);
+        emailMessages.add(0, emailMessage);
+    }
+
+    private EmailMessage fetchMessage(Message message) throws MessagingException {
+        boolean messageIsRead = message.getFlags().contains(Flags.Flag.SEEN);
+        EmailMessage emailMessage = new EmailMessage(
+                message.getSubject(),
+                message.getFrom()[0].toString(),
+                message.getRecipients(MimeMessage.RecipientType.TO)[0].toString(),
+                message.getSize(),
+                message.getSentDate(),
+                messageIsRead,
+                message
+        );
+        if(!messageIsRead){
+            incrementMessagesCount();
+        }
+        return  emailMessage;
+    }
+
 
 }

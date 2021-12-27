@@ -24,6 +24,7 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#optionsAction" text="Options" />
                   <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                    <MenuItem mnemonicParsing="false" onAction="#composeMessageAction" text="Compose message" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">

@@ -20,6 +20,7 @@ public class Launcher extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
+        // https://github.com/barosanuemailtest/JavaFxEmailClientCourse/commit/1b62360566f4ef6624e999282d522dd829f71fce
         ViewFactory viewFactory = new ViewFactory(new EmailManager());
         viewFactory.showLoginWindow();
         viewFactory.updateStyle();
